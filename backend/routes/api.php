@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\MenuController;
+use App\Http\Controllers\Api\TableController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -16,10 +18,14 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('menus')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Api\MenuController::class, 'index']);
-        Route::post('/', [\App\Http\Controllers\Api\MenuController::class, 'store']);
-        Route::get('/{id}', [\App\Http\Controllers\Api\MenuController::class, 'show']);
-        Route::put('/{id}', [\App\Http\Controllers\Api\MenuController::class, 'update']);
-        Route::delete('/{id}', [\App\Http\Controllers\Api\MenuController::class, 'destroy']);
+        Route::get('/', [MenuController::class, 'index']);
+        Route::post('/', [MenuController::class, 'store']);
+        Route::get('/{id}', [MenuController::class, 'show']);
+        Route::put('/{id}', [MenuController::class, 'update']);
+        Route::delete('/{id}', [MenuController::class, 'destroy']);
+    });
+
+    Route::prefix('tables')->group(function () {
+        Route::get('/', [TableController::class, 'index']);
     });
 });

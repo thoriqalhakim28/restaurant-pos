@@ -21,13 +21,7 @@ class CategoryService
 
     public function getCategoryById(int $id)
     {
-        $category = Category::find($id);
-
-        if (! $category) {
-            return null;
-        }
-
-        return $category;
+        return Category::find($id);
     }
 
     public function updateCategory(int $id, array $data)
