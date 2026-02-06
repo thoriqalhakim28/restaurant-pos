@@ -2,7 +2,6 @@
 namespace App\Services;
 
 use App\Models\Menu;
-use Illuminate\Support\Str;
 
 class MenuService
 {
@@ -18,7 +17,6 @@ class MenuService
         return Menu::create([
             'category_id' => $data['category_id'],
             'name'        => $data['name'],
-            'slug'        => Str::slug($data['name']),
             'description' => $data['description'],
             'price'       => $data['price'],
         ]);
@@ -40,7 +38,6 @@ class MenuService
         $menu->update([
             'category_id' => $data['category_id'],
             'name'        => $data['name'],
-            'slug'        => Str::slug($data['name']),
             'description' => $data['description'],
             'price'       => $data['price'],
         ]);

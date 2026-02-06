@@ -2,7 +2,6 @@
 namespace App\Services;
 
 use App\Models\Category;
-use Illuminate\Support\Str;
 
 class CategoryService
 {
@@ -17,7 +16,6 @@ class CategoryService
     {
         return Category::create([
             'name' => $data['name'],
-            'slug' => Str::slug($data['name']),
         ]);
     }
 
@@ -42,7 +40,6 @@ class CategoryService
 
         $category->update([
             'name' => $data['name'],
-            'slug' => Str::slug($data['name']),
         ]);
 
         return $category;
