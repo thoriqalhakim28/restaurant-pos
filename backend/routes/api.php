@@ -14,4 +14,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/{id}', [CategoryController::class, 'update']);
         Route::delete('/{id}', [CategoryController::class, 'destroy']);
     });
+
+    Route::prefix('menus')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\MenuController::class, 'index']);
+        Route::post('/', [\App\Http\Controllers\Api\MenuController::class, 'store']);
+        Route::get('/{id}', [\App\Http\Controllers\Api\MenuController::class, 'show']);
+        Route::put('/{id}', [\App\Http\Controllers\Api\MenuController::class, 'update']);
+        Route::delete('/{id}', [\App\Http\Controllers\Api\MenuController::class, 'destroy']);
+    });
 });
