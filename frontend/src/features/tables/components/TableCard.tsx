@@ -17,7 +17,7 @@ export function TableCard({ table }: TableCardProps) {
 
     return (
         <Card className={`${colorClass} cursor-pointer`}>
-            <CardContent className="flex items-center justify-center p-6">
+            <CardContent className="flex items-center justify-center">
                 <span className="text-4xl font-bold text-white">{table.table_number}</span>
             </CardContent>
         </Card>

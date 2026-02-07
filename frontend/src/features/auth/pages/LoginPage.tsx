@@ -8,9 +8,12 @@ import { login } from "../api/auth.api";
 import { useAuthStore } from "../store/auth.store";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 export default function LoginPage() {
     const setAuth = useAuthStore((state) => state.setAuth);
+
+    const navigate = useNavigate();
 
     const form = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
@@ -28,6 +31,10 @@ export default function LoginPage() {
                 user: data.user,
                 access_token: data.access_token,
             });
+
+            toast.success("Login successful", { description: `Welcome back, ${data.user.name}!` });
+
+            navigate("/pos", { replace: true });
         } catch {
             toast.error("Login failed", {
                 description: "Please check your credentials and try again.",

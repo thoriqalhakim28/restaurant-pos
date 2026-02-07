@@ -1,2 +1,5 @@
 export * from "./AppLayout";
-export * from "./Header";
+export * from "./AuthLayout";
+export * from "./GuestLayout";
+export * from "./AppHeader";
+export * from "./GuestHeader";

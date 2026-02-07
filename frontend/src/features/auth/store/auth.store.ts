@@ -15,6 +15,7 @@ type AuthState = {
 
     setAuth: (payload: { user: User; access_token: string }) => void;
     setToken: (token: string) => void;
+    logout: () => void;
 };
 
 export const useAuthStore = create<AuthState>()(
@@ -35,6 +36,13 @@ export const useAuthStore = create<AuthState>()(
                 set({
                     access_token,
                     isAuthenticated: true,
+                }),
+
+            logout: () =>
+                set({
+                    user: null,
+                    access_token: null,
+                    isAuthenticated: false,
                 }),
         }),
         {
