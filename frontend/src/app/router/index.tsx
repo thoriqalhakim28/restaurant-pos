@@ -7,6 +7,7 @@ import NotFoundPage from "@/pages/NotFoundPage";
 import { createBrowserRouter } from "react-router";
 import GuestRoute from "./guest";
 import DashboardPage from "@/pages/DashboardPage";
+import MenuPage from "@/features/menu/pages/MenuPage";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
             {
                 path: "/pos",
                 element: <DashboardPage />,
+            },
+            {
+                path: "/menus",
+                element: <MenuPage />,
             },
         ],
     },
