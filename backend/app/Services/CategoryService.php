@@ -7,7 +7,7 @@ class CategoryService
 {
     public function getAllCategories()
     {
-        $data = Category::select('id', 'name', 'created_at', 'updated_at')->get();
+        $data = Category::with('menus')->get();
 
         return $data;
     }
