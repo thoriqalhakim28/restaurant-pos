@@ -18,7 +18,7 @@ export default function GuestHeader() {
 
                 <div className="ml-auto flex items-center gap-2">
                     {isAuthenticated ? (
-                        <NavLink to="/pos">
+                        <NavLink to="/dashboard">
                             <Button>
                                 <LayoutDashboard size={16} />
                                 Dashboard

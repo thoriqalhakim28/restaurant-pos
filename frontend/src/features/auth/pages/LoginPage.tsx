@@ -34,7 +34,7 @@ export default function LoginPage() {
 
             toast.success("Login successful", { description: `Welcome back, ${data.user.name}!` });
 
-            navigate("/pos", { replace: true });
+            navigate("/dashboard", { replace: true });
         } catch {
             toast.error("Login failed", {
                 description: "Please check your credentials and try again.",
