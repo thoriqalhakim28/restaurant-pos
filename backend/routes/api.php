@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\TableController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -39,5 +40,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{id}/items/{itemId}', [OrderController::class, 'removeItem']);
         Route::post('/{id}/close', [OrderController::class, 'close']);
         Route::post('/{id}/cancel', [OrderController::class, 'cancel']);
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
     });
 });
