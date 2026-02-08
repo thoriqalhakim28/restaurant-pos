@@ -8,6 +8,8 @@ import { createBrowserRouter } from "react-router";
 import GuestRoute from "./guest";
 import DashboardPage from "@/pages/DashboardPage";
 import MenuPage from "@/features/menu/pages/MenuPage";
+import EmployeePage from "@/features/users/pages/UserPage";
+import OrderPage from "@/features/orders/pages/OrderPage";
 
 export const router = createBrowserRouter([
     {
@@ -23,12 +25,20 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
             {
-                path: "/pos",
+                path: "/dashboard",
                 element: <DashboardPage />,
+            },
+            {
+                path: "/orders",
+                element: <OrderPage />,
             },
             {
                 path: "/menus",
                 element: <MenuPage />,
+            },
+            {
+                path: "/users",
+                element: <EmployeePage />,
             },
         ],
     },
