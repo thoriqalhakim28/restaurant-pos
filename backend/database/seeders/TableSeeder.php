@@ -12,7 +12,7 @@ class TableSeeder extends Seeder
      */
     public function run(): void
     {
-        $numberOfTables = 25;
+        $numberOfTables = 5;
 
         for ($i = 1; $i <= $numberOfTables; $i++) {
             Table::create([

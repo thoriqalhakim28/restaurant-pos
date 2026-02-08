@@ -23,6 +23,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
     public function orders()
     {
         return $this->hasMany(Order::class);

@@ -6,12 +6,10 @@ use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+
     public function run(): void
     {
-        $categories = ['Main Course', 'Appetizers', 'Desserts', 'Drinks', 'Salads', 'Soups'];
+        $categories = ['Appetizers', 'Main Course', 'Desserts', 'Beverages'];
 
         foreach ($categories as $category) {
             Category::create(['name' => $category]);
