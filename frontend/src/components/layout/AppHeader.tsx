@@ -3,11 +3,13 @@ import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { UtensilsCrossedIcon, LogOutIcon, MenuIcon } from "lucide-react";
 import { useAuthStore } from "@/features/auth/store/auth.store";
-import { NAV_ITEMS } from "@/utils/constants/menu";
+import { getNavItemsByRole } from "@/utils/constants/menu";
 
 export default function AppHeader() {
     const { user, logout } = useAuthStore();
     const navigate = useNavigate();
+
+    const navItems = getNavItemsByRole(user?.role);
 
     const handleLogout = () => {
         logout();
@@ -35,8 +37,9 @@ export default function AppHeader() {
                         <div className="flex h-full flex-1 flex-col p-4">
                             <div className="flex h-full flex-col justify-between text-sm">
                                 <div className="flex flex-col space-y-1">
-                                    {NAV_ITEMS.map((item) => (
+                                    {navItems.map((item) => (
                                         <NavLink
+                                            key={item.to}
                                             to={item.to}
                                             className={({ isActive }) =>
                                                 `px-3 py-3 rounded-md text-sm font-medium transition-colors ${
@@ -70,7 +73,7 @@ export default function AppHeader() {
                     </SheetContent>
                 </Sheet>
 
-                <NavLink to="/dashboard" className="h-full items-center flex gap-2">
+                <NavLink to="/orders" className="h-full items-center flex gap-2">
                     <div className="h-10 w-10 flex items-center justify-center bg-accent rounded-lg">
                         <UtensilsCrossedIcon size={24} />
                     </div>
@@ -78,7 +81,7 @@ export default function AppHeader() {
                 </NavLink>
 
                 <nav className="ml-8 hidden md:flex items-center gap-1">
-                    {NAV_ITEMS.map((item) => (
+                    {navItems.map((item) => (
                         <NavLink
                             key={item.to}
                             to={item.to}

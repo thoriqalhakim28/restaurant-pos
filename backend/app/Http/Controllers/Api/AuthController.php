@@ -34,4 +34,11 @@ class AuthController extends Controller
 
         return $this->successResponse($data, 'Login successful.');
     }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return $this->successResponse(null, 'Logout successful.');
+    }
 }
