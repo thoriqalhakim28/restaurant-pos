@@ -8,6 +8,7 @@ use App\Http\Requests\Orders\UpdateItemRequest;
 use App\Http\Resources\OrderResource;
 use App\Services\OrderService;
 use App\Traits\ApiResponse;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -44,7 +45,6 @@ class OrderController extends Controller
     public function store(OpenOrderRequest $request)
     {
         $data = $request->validated();
-
 
         $result = $this->orderService->openOrder($data['table_id']);
 
@@ -124,5 +124,20 @@ class OrderController extends Controller
         $response = new OrderResource($result['order']);
 
         return $this->successResponse($response, 'Order cancelled successfully');
+    }
+
+    public function receipt(int $id)
+    {
+        $order = $this->orderService->getOrderById($id);
+
+        if (! $order) {
+            return $this->errorResponse('Order not found', 404);
+        }
+
+        $order->load(['details.menu', 'table', 'user']);
+
+        $pdf = Pdf::loadView('receipts.order', ['order' => $order]);
+
+        return $pdf->download("receipt-{$order->order_number}.pdf");
     }
 }
