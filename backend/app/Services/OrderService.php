@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Table;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -58,6 +59,7 @@ class OrderService
                 'order_number' => $orderNumber,
                 'total_amount' => 0,
                 'status'       => OrderStatus::OPEN,
+                'order_date'   => Carbon::now(),
             ]);
 
             $table->update(['status' => TableStatus::OCCUPIED]);
