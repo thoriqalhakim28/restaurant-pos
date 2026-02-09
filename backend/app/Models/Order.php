@@ -12,6 +12,7 @@ class Order extends Model
         'order_number',
         'total_amount',
         'status',
+        'order_date',
     ];
 
     protected function casts(): array

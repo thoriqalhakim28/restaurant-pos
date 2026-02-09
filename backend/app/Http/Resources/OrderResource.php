@@ -20,6 +20,7 @@ class OrderResource extends JsonResource
             }),
             'total_amount' => $this->total_amount,
             'status'       => $this->status,
+            'order_date'   => $this->order_date,
             'details'      => OrderDetailResource::collection($this->whenLoaded('details')),
             'created_at'   => $this->created_at,
             'updated_at'   => $this->updated_at,

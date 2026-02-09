@@ -10,6 +10,8 @@ import DashboardPage from "@/pages/DashboardPage";
 import MenuPage from "@/features/menu/pages/MenuPage";
 import EmployeePage from "@/features/users/pages/UserPage";
 import OrderPage from "@/features/orders/pages/OrderPage";
+import TableOrderPage from "@/features/orders/pages/TableOrderPage";
+import MobileOrderDetailPage from "@/features/orders/pages/MobileOrderDetailPage";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +33,14 @@ export const router = createBrowserRouter([
             {
                 path: "/orders",
                 element: <OrderPage />,
+            },
+            {
+                path: "/orders/:tableId",
+                element: <TableOrderPage />,
+            },
+            {
+                path: "/orders/:tableId/details",
+                element: <MobileOrderDetailPage />,
             },
             {
                 path: "/menus",
