@@ -1,7 +1,7 @@
 export const NAV_ITEMS = [
     {
-        to: "/pos",
-        label: "POS",
+        to: "/dashboard",
+        label: "Dashboard",
     },
     {
         to: "/orders",
@@ -12,7 +12,7 @@ export const NAV_ITEMS = [
         label: "Products",
     },
     {
-        to: "/employees",
-        label: "Employees",
+        to: "/users",
+        label: "Users",
     },
 ];
