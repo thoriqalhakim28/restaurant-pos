@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/sheet";
 import { Spinner } from "@/components/ui/spinner";
 import { formatCurrencyIDR, formatDateTime } from "@/lib/format";
-import { ClockIcon, DotIcon, TableIcon, XIcon } from "lucide-react";
+import { api } from "@/lib/axios";
+import { ClockIcon, DotIcon, PrinterIcon, TableIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useOrdersStore } from "../store/orders.store";
@@ -68,6 +69,23 @@ export default function OrderDetailSheet({ order, open, onOpenChange }: OrderDet
     }
 
     const isOpen = order.status === "open";
+
+    function handlePrintReceipt() {
+        if (!order) return;
+
+        api.get(`/orders/${order.id}/receipt`, {
+            responseType: "blob",
+        })
+            .then((response) => {
+                const blob = new Blob([response.data], { type: "application/pdf" });
+                const url = window.URL.createObjectURL(blob);
+                window.open(url, "_blank");
+            })
+            .catch((error) => {
+                console.error(error);
+                toast.error("Failed to generate receipt");
+            });
+    }
 
     return (
         <Sheet open={open} onOpenChange={onOpenChange}>
@@ -149,6 +167,13 @@ export default function OrderDetailSheet({ order, open, onOpenChange }: OrderDet
                                 Close Order
                             </Button>
                         </div>
+                    )}
+
+                    {order.status === "closed" && (
+                        <Button variant="outline" onClick={handlePrintReceipt} className="w-full">
+                            <PrinterIcon size={16} />
+                            Print Receipt
+                        </Button>
                     )}
                 </SheetFooter>
             </SheetContent>

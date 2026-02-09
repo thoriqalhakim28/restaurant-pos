@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { UserRole } from "../types/auth.types";
 
 type User = {
     id: string;
     name: string;
     email: string;
-    role: "admin" | "user";
+    role: UserRole;
 };
 
 type AuthState = {
